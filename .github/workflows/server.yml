@@ -25,7 +25,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - name: Add ENV
       - run: touch .env
       - run: echo DB_URL=${{ secrets.DB_URL }} >> .env
       - run: pm2 restart server
