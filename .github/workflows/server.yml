@@ -12,6 +12,7 @@ jobs:
     runs-on: [self-hosted, server]
     defaults:
       run:
+        shell: bash
         working-directory: server
 
     strategy:
@@ -26,5 +27,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - run: touch .env
-      - run: echo DB_URL=${{ secrets.DB_URL }} >> .env
+        env:
+          DB_URL: ${{ secrets.DB_URL }}
+      - run: echo DB_URL="$DB_URL" >> .env
       - run: pm2 restart server
