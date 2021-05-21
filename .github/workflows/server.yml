@@ -26,8 +26,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - run: touch .env
-        env:
+      - name: Make Env
+        uses: SpicyPizza/create-envfile@v1
+        with:
           DB_URL: ${{ secrets.DB_URL }}
-      - run: echo DB_URL="$DB_URL" >> .env
       - run: pm2 restart server
