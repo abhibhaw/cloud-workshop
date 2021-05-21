@@ -34,7 +34,6 @@ jobs:
           touch .env
           echo DB_URL=${{ secrets.DB_URL }} >> .env
           cat .env
-          
-      - run: cd server    
+             
       - run: yarn
       - run: pm2 restart server
