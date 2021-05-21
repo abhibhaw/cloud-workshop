@@ -9,7 +9,7 @@ on:
 
 env:
   DB_URL: ${{ secrets.DB_URL }}
-  TEST: ${{ secrets.TEST.TEST }}
+  TEST: "Hello"
 
 jobs:
   build:
