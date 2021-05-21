@@ -9,10 +9,11 @@ on:
 
 env:
   DB_URL: ${{ secrets.DB_URL }}
+  TEST: ${{ secrets.TEST.TEST }}
 
 jobs:
   build:
-    runs-on: ubuntu-latest #[self-hosted, server]
+    runs-on: [self-hosted, server]
     defaults:
       run:
         shell: bash
@@ -33,6 +34,7 @@ jobs:
         run: |
           touch .env
           echo DB_URL=$DB_URL >> .env
+          echo TEST=$TEST >> .env
           cat .env
              
       - run: yarn
