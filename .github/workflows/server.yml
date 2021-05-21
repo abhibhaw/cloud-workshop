@@ -7,6 +7,9 @@ on:
       - ".github/workflows/server.yml"
     branches: [main]
 
+env:
+  DB_URL: ${{ secrets.DB_URL }}
+
 jobs:
   build:
     runs-on: [self-hosted, server]
@@ -26,8 +29,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - name: Make Env
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          DB_URL: ${{ secrets.DB_URL }}
       - run: pm2 restart server
