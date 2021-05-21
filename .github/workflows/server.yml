@@ -16,7 +16,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: server
+        # working-directory: server
 
     strategy:
       matrix:
@@ -28,5 +28,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+          
+      - name: Create .env File
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          DB_URL: ${{ secrets.DB_URL }}
+          directory: server
+          
+      - run: cd server    
       - run: yarn
       - run: pm2 restart server
